@@ -1,0 +1,111 @@
+EXPERIMENT – 5
+
+AIM: To create SQL views for department salary summary and employee hierarchy, test the updatability of views, and implement a recursive CTE to display reporting chains.
+
+SOURCE CODE
+
+Creating Tables
+Create three tables: Department, Project, and Employee. The Employee table contains employee details, department ID, project ID, and manager ID, with foreign key constraints referencing the Department and Project tables.
+
+Inserting Department Records
+Insert five departments into the Department table:
+
+Human Resources — Delhi
+
+Information Technology — Chandigarh
+
+Finance — Mumbai
+
+Marketing — Bangalore
+
+Research and Development — Hyderabad
+
+Inserting Project Records
+
+Insert eight projects into the Project table:
+
+Website Development — 500000
+
+Mobile Application — 750000
+
+Cyber Security System — 900000
+
+Data Analytics Platform — 850000
+
+AI Chatbot — 1200000
+
+Cloud Migration — 1000000
+
+Payroll Management — 400000
+
+Market Research System — 600000
+
+Inserting Employee Records
+
+Insert 30 employee records containing employee ID, employee name, salary, job role, department ID, project ID, and manager ID.
+
+Department Salary Summary
+Create a view named "Department_Salary_Summary" using the Department and Employee tables.
+
+The view uses aggregate functions to calculate:
+
+Employee count
+Average salary
+Total salary
+Highest salary
+Lowest salary
+A LEFT JOIN is used to include departments even when they have no employees.
+
+Query:
+
+SELECT * FROM Department_Salary_Summary;
+
+Output: Displays the salary summary for each department.
+
+Employee Hierarchy
+Create a view named "Employee_Hierarchy" by joining the Employee table with itself.
+
+The view displays:
+
+Employee ID
+Employee name
+Job role
+Department ID
+Manager ID
+Manager name
+Query:
+
+SELECT * FROM Employee_Hierarchy;
+
+Output: Displays employees along with their managers' names.
+
+Employee Basic View
+Create a view named "Employee_Basic_View" containing employee ID, employee name, salary, and department ID.
+
+Output: Displays basic employee details.
+
+Updating a View
+Update the salary of employee ID 1 by increasing it by 1000 through the "Employee_Basic_View".
+
+Query:
+
+UPDATE Employee_Basic_View SET Salary = Salary + 1000 WHERE Emp_ID = 1;
+
+Retrieve the updated record using:
+
+SELECT * FROM Employee_Basic_View WHERE Emp_ID = 1;
+
+Output: Displays the updated salary of employee ID 1.
+
+Recursive CTE — Reporting Chain
+Create a recursive Common Table Expression (CTE) named "Reporting_Chain".
+
+The query starts with employees whose "Manager_ID" is NULL and assigns them reporting level 0. It then recursively retrieves employees whose manager IDs match the employee IDs in the previous level, increasing the reporting level by 1.
+
+The final result is ordered by reporting level and employee ID.
+
+Output: Displays employee ID, employee name, manager ID, and reporting level.
+
+RESULT
+
+SQL views were created for department salary summaries and employee hierarchies. The updatability of a view was tested by modifying an employee's salary, and a recursive CTE was used to display employee reporting chains.
